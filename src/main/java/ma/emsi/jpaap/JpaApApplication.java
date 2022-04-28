@@ -42,5 +42,20 @@ public class JpaApApplication {
             });
 
         };
+        @Bean
+    CommandLineRunner cusers(SecurityService securityService){
+        return args -> {
+            securityService.saveNewUser("amine","12345","12345");
+            securityService.saveNewRole("USER","Utilisateur Normal");
+            securityService.addRoleToUser("amine","USER");
+            securityService.saveNewUser("mohammed","12345","12345");
+            securityService.addRoleToUser("mohammed","USER");
+            // User Admin
+            securityService.saveNewUser("admin","12345","12345");
+            securityService.saveNewRole("ADMIN","Utilisateur Admin");
+            securityService.addRoleToUser("admin","ADMIN");
+            securityService.addRoleToUser("admin","USER");
+        };
+    }
     }
 }
